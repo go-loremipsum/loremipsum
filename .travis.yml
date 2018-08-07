@@ -1,0 +1,22 @@
+language: go
+
+go: 1.10.x
+
+matrix:
+  include:
+    - go: 1.10.x
+      env: COVERAGE=true
+    - go: 1.9.x
+      env: COVERAGE=false
+
+install:
+  - go get -t ./...
+  - go get golang.org/x/tools/cmd/cover
+  - go get github.com/mattn/goveralls
+
+script:
+  - ./travis.sh
+
+env:
+  global:
+    secure: "ty9ZyP5ogZyFgx4v+7mK2Z3mtbIv77RjdVNz9H2HdDc9vqesaBvYTus/PLjWuo2xRATtMBVy/ZWgMGVByG9jKhlp/guIHUcGJdCRNdJFILo+xrESUgfGu71ExzkflyHAg8cwXrq+CY8tcPFfzx1c0K8GzqjNrVfeC9i2OmCqn2nGlhVJi6ZegxDbVXQ+uhztkQ7g3jV8rq3g1oF60We602Vqt/U/HCqJePoN5PJXd0NSWfOIfsaJuqxMNfTQ+6KcnX1jr1sEWy2jIAbo5+RXCoX2rU+/AjDJXBajlDWYxRzviiEux00IyVo0FAHjOfQXaR2sLN9b4VaUfToanue6ieU84eZOj0yYi3nqjrsNccWnYWzplMuIdTNE9nxjgoqF7Vq0ZeiRpxfknLt8WAt36yvjbjly/dTVVU4Uw90yBRJsJ48HIhp5JLD0+QMkbAVImb/gc891gwRNiRXrTV9bBWhka3NWxmnVa2uifCdqthepmVjoS2N1afZkzWDMigmpLmwRdetI+e4ZPVpXAEBrb/PznzuDRE8zPrdpPRQvU9bljhzSHVgcoTdRXqb00XM+fzoT0UfT9IWwB/dHTJBv3LZhtvy8V2oqerJnhea0tjXsp/SQpd/C298p4IOPA5JARS1Fl0ofm3BllxOlhjiKoFuX4TDmePVufb8bA4eqkws="
