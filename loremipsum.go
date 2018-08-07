@@ -29,9 +29,14 @@ func (li *LoremIpsum) Word() string {
 	return li.words[rand.Intn(len(li.words))]
 }
 
+// WordList returns list of words of lorem ipsum
+func (li *LoremIpsum) WordList(count int) []string {
+	return li.words[:count]
+}
+
 // Words returns words of lorem ipsum
 func (li *LoremIpsum) Words(count int) string {
-	return strings.Join(li.words[:count], " ")
+	return strings.Join(li.WordList(count), " ")
 }
 
 // Sentence returns full sentence of lorem ipsum
@@ -41,15 +46,20 @@ func (li *LoremIpsum) Sentence() string {
 	return punctuate(words)
 }
 
-// Sentences returns sentences of lorem ipsum
-func (li *LoremIpsum) Sentences(count int) string {
+// SentenceList returns list of sentences of lorem ipsum
+func (li *LoremIpsum) SentenceList(count int) []string {
 	var sentences []string
 	sentences = make([]string, count)
 	for idx := range sentences {
 		sentences[idx] = li.Sentence()
 		li.shuffle()
 	}
-	return strings.Join(sentences, " ")
+	return sentences
+}
+
+// Sentences returns sentences of lorem ipsum
+func (li *LoremIpsum) Sentences(count int) string {
+	return strings.Join(li.SentenceList(count), " ")
 }
 
 // Paragraph returns full paragraph of lorem ipsum
@@ -57,12 +67,17 @@ func (li *LoremIpsum) Paragraph() string {
 	return li.Sentences(int(gauss(5.8, 1.93)))
 }
 
-// Paragraphs returns paragraphs of lorem ipsum
-func (li *LoremIpsum) Paragraphs(count int) string {
+// ParagraphList returns list of paragraphs of lorem ipsum
+func (li *LoremIpsum) ParagraphList(count int) []string {
 	var paragraphs []string
 	paragraphs = make([]string, count)
 	for idx := range paragraphs {
 		paragraphs[idx] = li.Paragraph()
 	}
-	return strings.Join(paragraphs, "\\n")
+	return paragraphs
+}
+
+// Paragraphs returns paragraphs of lorem ipsum
+func (li *LoremIpsum) Paragraphs(count int) string {
+	return strings.Join(li.ParagraphList(count), "\\n")
 }
