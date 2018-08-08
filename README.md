@@ -10,7 +10,7 @@ A lorem ipsum generator for Go
 ## Usage
 
 ~~~go
-import "github.com/go-loremipsum/loremipsum"
+import "gppkg.in/loremipsum.v0"
 
 loremIpsumGeneratoe := loremipsum.New()
 ~~~
