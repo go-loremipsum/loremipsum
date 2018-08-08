@@ -2,15 +2,15 @@
 
 [![Build Status](https://travis-ci.org/go-loremipsum/loremipsum.svg?branch=master)](https://travis-ci.org/go-loremipsum/loremipsum)
 [![Coverage Status](https://coveralls.io/repos/github/go-loremipsum/loremipsum/badge.svg?branch=master)](https://coveralls.io/github/go-loremipsum/loremipsum?branch=master)
-[![Go Report Card](https://goreportcard.com/badge/github.com/go-loremipsum/loremipsum)](https://goreportcard.com/report/github.com/go-loremipsum/loremipsum)
-[![GoDoc](https://godoc.org/github.com/go-loremipsum/loremipsum?status.svg)](https://godoc.org/github.com/go-loremipsum/loremipsum)
+[![Go Report Card](https://goreportcard.com/badge/gopkg.in/loremipsum.v1)](https://goreportcard.com/report/gopkg.in/loremipsum.v1)
+[![GoDoc](https://godoc.org/gopkg.in/loremipsum.v1?status.svg)](https://godoc.org/gopkg.in/loremipsum.v1)
 
 A lorem ipsum generator for Go
 
 ## Usage
 
 ~~~go
-import "gppkg.in/loremipsum.v0"
+import "gopkg.in/loremipsum.v1"
 
 loremIpsumGeneratoe := loremipsum.New()
 ~~~
