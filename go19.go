@@ -31,7 +31,7 @@ func int31n(n int32) int32 {
 // Shuffle pseudo-randomizes the order of elements.
 // n is the number of elements. Shuffle panics if n < 0.
 // swap swaps the elements with indexes i and j.
-func shuffle(n int, swap func(i, j int)) {
+func (li *LoremIpsum)shuffle(n int, swap func(i, j int)) {
 	if n < 0 {
 		panic("invalid argument to Shuffle")
 	}

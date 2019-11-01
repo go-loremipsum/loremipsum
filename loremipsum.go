@@ -11,13 +11,18 @@ type LoremIpsum struct {
 	first bool
 	words []string
 	idx   int
+	rng   *rand.Rand
 }
 
 // New returns new instance of LoremIpsum
 func New() *LoremIpsum {
-	rand.Seed(time.Now().Unix())
+	return NewWithSeed(time.Now().Unix())
+}
 
+// New returns new instance of LoremIpsum with PRNG seeded with the parameter
+func NewWithSeed(seed int64) *LoremIpsum {
 	li := new(LoremIpsum)
+	li.rng = rand.New(rand.NewSource(seed))
 	li.first = true
 	li.idx = 0
 	li.shuffle()
@@ -26,7 +31,7 @@ func New() *LoremIpsum {
 
 // Word returns a single word of lorem ipsum
 func (li *LoremIpsum) Word() string {
-	return li.words[rand.Intn(len(li.words))]
+	return li.words[li.rng.Intn(len(li.words))]
 }
 
 // WordList returns list of words of lorem ipsum
@@ -41,9 +46,9 @@ func (li *LoremIpsum) Words(count int) string {
 
 // Sentence returns full sentence of lorem ipsum
 func (li *LoremIpsum) Sentence() string {
-	l := int(gauss(24.46, 5.08))
+	l := int(li.gauss(24.46, 5.08))
 	words := li.words[:l]
-	return punctuate(words)
+	return li.punctuate(words)
 }
 
 // SentenceList returns list of sentences of lorem ipsum
@@ -64,7 +69,7 @@ func (li *LoremIpsum) Sentences(count int) string {
 
 // Paragraph returns full paragraph of lorem ipsum
 func (li *LoremIpsum) Paragraph() string {
-	return li.Sentences(int(gauss(5.8, 1.93)))
+	return li.Sentences(int(li.gauss(5.8, 1.93)))
 }
 
 // ParagraphList returns list of paragraphs of lorem ipsum

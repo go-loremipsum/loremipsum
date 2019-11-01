@@ -2,8 +2,6 @@
 
 package loremipsum
 
-import "math/rand"
-
 // Shuffle the words
 func (li *LoremIpsum) shuffle() {
 	var words []string
@@ -15,7 +13,7 @@ func (li *LoremIpsum) shuffle() {
 		words = make([]string, len(rest))
 		copy(words, rest)
 	}
-	rand.Shuffle(len(words), func(i int, j int) {
+	li.rng.Shuffle(len(words), func(i int, j int) {
 		words[i], words[j] = words[j], words[i]
 	})
 	if li.first {
