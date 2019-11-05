@@ -1,11 +1,17 @@
 language: go
 
-go: 1.10.x
+go: 1.13.x
 
 matrix:
   include:
-    - go: 1.10.x
+    - go: 1.13.x
       env: COVERAGE=true
+    - go: 1.12.x
+      env: COVERAGE=false
+    - go: 1.11.x
+      env: COVERAGE=false
+    - go: 1.10.x
+      env: COVERAGE=false
     - go: 1.9.x
       env: COVERAGE=false
 
