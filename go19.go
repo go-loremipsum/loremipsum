@@ -13,14 +13,14 @@ import "math/rand"
 // For implementation details, see:
 // http://lemire.me/blog/2016/06/27/a-fast-alternative-to-the-modulo-reduction
 // http://lemire.me/blog/2016/06/30/fast-random-shuffling
-func int31n(n int32) int32 {
-	v := rand.Uint32()
+func (li *LoremIpsum) int31n(n int32) int32 {
+	v := li.rng.Uint32()
 	prod := uint64(v) * uint64(n)
 	low := uint32(prod)
 	if low < uint32(n) {
 		thresh := uint32(-n) % uint32(n)
 		for low < thresh {
-			v = rand.Uint32()
+			v = li.rng.Uint32()
 			prod = uint64(v) * uint64(n)
 			low = uint32(prod)
 		}
@@ -31,7 +31,7 @@ func int31n(n int32) int32 {
 // Shuffle pseudo-randomizes the order of elements.
 // n is the number of elements. Shuffle panics if n < 0.
 // swap swaps the elements with indexes i and j.
-func shuffle(n int, swap func(i, j int)) {
+func (li *LoremIpsum) shuffleWords(n int, swap func(i, j int)) {
 	if n < 0 {
 		panic("invalid argument to Shuffle")
 	}
@@ -47,7 +47,7 @@ func shuffle(n int, swap func(i, j int)) {
 		swap(i, j)
 	}
 	for ; i > 0; i-- {
-		j := int(int31n(int32(i + 1)))
+		j := int(li.int31n(int32(i + 1)))
 		swap(i, j)
 	}
 }
@@ -63,7 +63,7 @@ func (li *LoremIpsum) shuffle() {
 		words = make([]string, len(rest))
 		copy(words, rest)
 	}
-	shuffle(len(words), func(i int, j int) {
+	li.shuffleWords(len(words), func(i int, j int) {
 		words[i], words[j] = words[j], words[i]
 	})
 	if li.first {

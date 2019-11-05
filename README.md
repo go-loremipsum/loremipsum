@@ -13,6 +13,15 @@ import "gopkg.in/loremipsum.v1"
 loremIpsumGeneratoe := loremipsum.New()
 ~~~
 
+Or, if you want repeatable output, pass seed
+
+~~~go
+import "gopkg.in/loremipsum.v1"
+
+loremIpsumGeneratoe := loremipsum.NewWithSeed(1234)
+~~~
+
+
 ### Generate random lorem ipsum word
 
 ~~~go
