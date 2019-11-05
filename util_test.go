@@ -7,6 +7,7 @@ import (
 )
 
 func TestPunctuate(t *testing.T) {
+	li := New()
 	sentence := []string{"this", "is", "a", "test"}
-	assert.Equal(t, "This is a test.", punctuate(sentence))
+	assert.Equal(t, "This is a test.", li.punctuate(sentence))
 }

@@ -2,23 +2,22 @@ package loremipsum
 
 import (
 	"math"
-	"math/rand"
 	"strings"
 )
 
-func gauss(mean, stdDev float64) float64 {
-	x := rand.Float64()
-	y := rand.Float64()
+func (li *LoremIpsum)gauss(mean, stdDev float64) float64 {
+	x := li.rng.Float64()
+	y := li.rng.Float64()
 	z := math.Sqrt(-2*math.Log(x)) * math.Cos(2*math.Pi*y)
 	return z*stdDev + mean
 }
 
-func punctuate(sentence []string) string {
+func (li *LoremIpsum)punctuate(sentence []string) string {
 	count := len(sentence)
 	if count > 4 {
 		mean := math.Log(float64(count)) / math.Log(6.0)
 		stdDev := mean / 6
-		commas := int(gauss(mean, stdDev))
+		commas := int(li.gauss(mean, stdDev))
 		for i := 1; i < commas; i++ {
 			idx := int(float64(i) * float64(count) / (float64(commas) + 1))
 			if idx > 0 && idx < (count-1) {
