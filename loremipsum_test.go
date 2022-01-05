@@ -74,28 +74,26 @@ func TestLoremIpsum_Paragraphs(t *testing.T) {
 func TestLoremIpsum_NewWithSeed(t *testing.T) {
 	liRandom := New()
 	liSeeded1 := NewWithSeed(1)
-	liSeeded2 := NewWithSeed (1)
+	liSeeded2 := NewWithSeed(1)
 
 	var liRandomList []string
 	var liSeeded1List []string
 	var liSeeded2List []string
 	reqCount := 5
 	for i := 1; i <= reqCount; i++ {
-		liRandomList = append(liRandomList,liRandom.Paragraphs(i+5))
-		liSeeded1List = append(liSeeded1List,liSeeded1.Paragraphs(i+5))
-		liSeeded2List = append(liSeeded2List,liSeeded2.Paragraphs(i+5))
+		liRandomList = append(liRandomList, liRandom.Paragraphs(i+5))
+		liSeeded1List = append(liSeeded1List, liSeeded1.Paragraphs(i+5))
+		liSeeded2List = append(liSeeded2List, liSeeded2.Paragraphs(i+5))
 	}
-	for i, _ := range liRandomList {
+	for i := range liRandomList {
 		// should differ from randomly generated
-		assert.NotEqual(t,liRandomList[i],liSeeded1List[i])
+		assert.NotEqual(t, liRandomList[i], liSeeded1List[i])
 		// should be same with same seed
-		assert.Equal(t,liSeeded1List[i],liSeeded2List[i])
+		assert.Equal(t, liSeeded1List[i], liSeeded2List[i])
 		// should not be same with next entry
-		if i < len(liRandomList) - 1 {
+		if i < len(liRandomList)-1 {
 			assert.NotEqual(t, liSeeded1List[i], liSeeded1List[i+1])
 		}
 	}
 
-
-	
 }

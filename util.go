@@ -5,14 +5,14 @@ import (
 	"strings"
 )
 
-func (li *LoremIpsum)gauss(mean, stdDev float64) float64 {
+func (li *LoremIpsum) gauss(mean, stdDev float64) float64 {
 	x := li.rng.Float64()
 	y := li.rng.Float64()
 	z := math.Sqrt(-2*math.Log(x)) * math.Cos(2*math.Pi*y)
 	return z*stdDev + mean
 }
 
-func (li *LoremIpsum)punctuate(sentence []string) string {
+func (li *LoremIpsum) punctuate(sentence []string) string {
 	count := len(sentence)
 	if count > 4 {
 		mean := math.Log(float64(count)) / math.Log(6.0)
