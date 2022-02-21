@@ -46,9 +46,13 @@ func (li *LoremIpsum) Words(count int) string {
 
 // Sentence returns full sentence of lorem ipsum
 func (li *LoremIpsum) Sentence() string {
-	l := int(li.gauss(24.46, 5.08))
-	words := li.words[:l]
-	return li.punctuate(words)
+	for {
+		l := int(li.gauss(24.46, 5.08))
+		if l > 0 {
+			words := li.words[:l]
+			return li.punctuate(words)
+		}
+	}
 }
 
 // SentenceList returns list of sentences of lorem ipsum
@@ -69,7 +73,12 @@ func (li *LoremIpsum) Sentences(count int) string {
 
 // Paragraph returns full paragraph of lorem ipsum
 func (li *LoremIpsum) Paragraph() string {
-	return li.Sentences(int(li.gauss(5.8, 1.93)))
+	for {
+		count := int(li.gauss(5.8, 1.93))
+		if count > 0 {
+			return li.Sentences(count)
+		}
+	}
 }
 
 // ParagraphList returns list of paragraphs of lorem ipsum
