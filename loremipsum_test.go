@@ -2,6 +2,7 @@ package loremipsum
 
 import (
 	"fmt"
+	"math/rand"
 	"strings"
 	"testing"
 
@@ -72,9 +73,21 @@ func TestLoremIpsum_Paragraphs(t *testing.T) {
 }
 
 func TestLoremIpsum_NewWithSeed(t *testing.T) {
+	testSeed(t,
+		NewWithSeed(1),
+		NewWithSeed(1),
+	)
+}
+
+func TestLoremIpsum_NewWithSource(t *testing.T) {
+	testSeed(t,
+		NewWithSource(rand.New(rand.NewSource(1))),
+		NewWithSource(rand.New(rand.NewSource(1))),
+	)
+}
+
+func testSeed(t *testing.T, liSeeded1, liSeeded2 *LoremIpsum) {
 	liRandom := New()
-	liSeeded1 := NewWithSeed(1)
-	liSeeded2 := NewWithSeed(1)
 
 	var liRandomList []string
 	var liSeeded1List []string
@@ -95,5 +108,4 @@ func TestLoremIpsum_NewWithSeed(t *testing.T) {
 			assert.NotEqual(t, liSeeded1List[i], liSeeded1List[i+1])
 		}
 	}
-
 }
