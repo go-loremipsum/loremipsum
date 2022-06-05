@@ -21,8 +21,14 @@ func New() *LoremIpsum {
 
 // New returns new instance of LoremIpsum with PRNG seeded with the parameter
 func NewWithSeed(seed int64) *LoremIpsum {
+	return NewWithSource(rand.NewSource(seed))
+}
+
+// NewWithSource returns new instance of LoremIpsum that uses random values
+// from source to generate words.
+func NewWithSource(source rand.Source) *LoremIpsum {
 	li := new(LoremIpsum)
-	li.rng = rand.New(rand.NewSource(seed))
+	li.rng = rand.New(source)
 	li.first = true
 	li.idx = 0
 	li.shuffle()
