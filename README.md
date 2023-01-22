@@ -10,7 +10,7 @@
 ~~~go
 import "gopkg.in/loremipsum.v1"
 
-loremIpsumGeneratoe := loremipsum.New()
+loremIpsumGenerator := loremipsum.New()
 ~~~
 
 Or, if you want repeatable output, pass seed
@@ -18,7 +18,7 @@ Or, if you want repeatable output, pass seed
 ~~~go
 import "gopkg.in/loremipsum.v1"
 
-loremIpsumGeneratoe := loremipsum.NewWithSeed(1234)
+loremIpsumGenerator := loremipsum.NewWithSeed(1234)
 ~~~
 
 
@@ -80,7 +80,7 @@ Lorem ipsum dolor sit amet consectetur adipiscing elit cubilia lobortis efficitu
 ### Generate random lorem ipsum paragraphs
 
 ~~~go
-paragraphs := loremIpsumGenerator.Paragraphs()
+paragraphs := loremIpsumGenerator.Paragraphs(3)
 fmt.Println(paragraphs)
 ~~~
 
