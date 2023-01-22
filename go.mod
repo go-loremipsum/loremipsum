@@ -1,4 +1,4 @@
-module go-loremipsum/loremipsum
+module gopkg.in/loremipsum.v1
 
 go 1.17
 
