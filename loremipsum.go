@@ -63,8 +63,7 @@ func (li *LoremIpsum) Sentence() string {
 
 // SentenceList returns list of sentences of lorem ipsum
 func (li *LoremIpsum) SentenceList(count int) []string {
-	var sentences []string
-	sentences = make([]string, count)
+	sentences := make([]string, count)
 	for idx := range sentences {
 		sentences[idx] = li.Sentence()
 		li.shuffle()
@@ -89,8 +88,7 @@ func (li *LoremIpsum) Paragraph() string {
 
 // ParagraphList returns list of paragraphs of lorem ipsum
 func (li *LoremIpsum) ParagraphList(count int) []string {
-	var paragraphs []string
-	paragraphs = make([]string, count)
+	paragraphs := make([]string, count)
 	for idx := range paragraphs {
 		paragraphs[idx] = li.Paragraph()
 	}
