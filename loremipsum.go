@@ -99,5 +99,5 @@ func (li *LoremIpsum) ParagraphList(count int) []string {
 
 // Paragraphs returns paragraphs of lorem ipsum
 func (li *LoremIpsum) Paragraphs(count int) string {
-	return strings.Join(li.ParagraphList(count), "\\n")
+	return strings.Join(li.ParagraphList(count), "\n")
 }

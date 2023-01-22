@@ -69,7 +69,7 @@ func TestLoremIpsum_Sentences(t *testing.T) {
 func TestLoremIpsum_Paragraphs(t *testing.T) {
 	li := New()
 	s := li.Paragraphs(3)
-	assert.Equal(t, 2, strings.Count(s, "\\n"))
+	assert.Equal(t, 2, strings.Count(s, "\n"))
 }
 
 func TestLoremIpsum_NewWithSeed(t *testing.T) {
