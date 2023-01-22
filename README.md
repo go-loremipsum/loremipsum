@@ -1,5 +1,6 @@
 # A lorem ipsum generator for Go
 
+[![Go](https://github.com/go-loremipsum/loremipsum/actions/workflows/go.yml/badge.svg?branch=master)](https://github.com/go-loremipsum/loremipsum/actions/workflows/go.yml)
 [![Build Status](https://travis-ci.org/go-loremipsum/loremipsum.svg?branch=master)](https://travis-ci.org/go-loremipsum/loremipsum)
 [![Coverage Status](https://coveralls.io/repos/github/go-loremipsum/loremipsum/badge.svg?branch=master)](https://coveralls.io/github/go-loremipsum/loremipsum?branch=master)
 [![Go Report Card](https://goreportcard.com/badge/github.com/go-loremipsum/loremipsum)](https://goreportcard.com/report/github.com/go-loremipsum/loremipsum)
