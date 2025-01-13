@@ -52,6 +52,7 @@ func (li *LoremIpsum) Words(count int) string {
 
 // Sentence returns full sentence of lorem ipsum
 func (li *LoremIpsum) Sentence() string {
+	defer li.shuffle()
 	for {
 		l := int(li.gauss(24.46, 5.08))
 		if l > 0 {
@@ -66,7 +67,6 @@ func (li *LoremIpsum) SentenceList(count int) []string {
 	sentences := make([]string, count)
 	for idx := range sentences {
 		sentences[idx] = li.Sentence()
-		li.shuffle()
 	}
 	return sentences
 }
