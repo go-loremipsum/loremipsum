@@ -3,6 +3,7 @@ package loremipsum
 import (
 	"math/rand"
 	"strings"
+	"sync"
 	"time"
 )
 
@@ -12,6 +13,7 @@ type LoremIpsum struct {
 	words []string
 	idx   int
 	rng   *rand.Rand
+	mu    sync.Mutex
 }
 
 // New returns new instance of LoremIpsum
@@ -38,6 +40,8 @@ func NewWithSource(source rand.Source) *LoremIpsum {
 // Word returns a single word of lorem ipsum
 func (li *LoremIpsum) Word() string {
 	defer li.shuffle()
+	li.mu.Lock()
+	defer li.mu.Unlock()
 	return li.words[li.rng.Intn(len(li.words))]
 }
 

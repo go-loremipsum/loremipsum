@@ -6,8 +6,10 @@ import (
 )
 
 func (li *LoremIpsum) gauss(mean, stdDev float64) float64 {
+	li.mu.Lock()
 	x := li.rng.Float64()
 	y := li.rng.Float64()
+	li.mu.Unlock()
 	z := math.Sqrt(-2*math.Log(x)) * math.Cos(2*math.Pi*y)
 	return z*stdDev + mean
 }

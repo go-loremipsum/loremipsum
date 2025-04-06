@@ -15,13 +15,17 @@ import "math/rand"
 // http://lemire.me/blog/2016/06/27/a-fast-alternative-to-the-modulo-reduction
 // http://lemire.me/blog/2016/06/30/fast-random-shuffling
 func (li *LoremIpsum) int31n(n int32) int32 {
+	li.mu.Lock()
 	v := li.rng.Uint32()
+	li.mu.Unlock()
 	prod := uint64(v) * uint64(n)
 	low := uint32(prod)
 	if low < uint32(n) {
 		thresh := uint32(-n) % uint32(n)
 		for low < thresh {
+			li.mu.Lock()
 			v = li.rng.Uint32()
+			li.mu.Unlock()
 			prod = uint64(v) * uint64(n)
 			low = uint32(prod)
 		}

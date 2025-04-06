@@ -14,9 +14,11 @@ func (li *LoremIpsum) shuffle() {
 		words = make([]string, len(rest))
 		copy(words, rest)
 	}
+	li.mu.Lock()
 	li.rng.Shuffle(len(words), func(i int, j int) {
 		words[i], words[j] = words[j], words[i]
 	})
+	li.mu.Unlock()
 	if li.first {
 		b := make([]string, len(beg))
 		copy(b, beg)
