@@ -37,11 +37,13 @@ func NewWithSource(source rand.Source) *LoremIpsum {
 
 // Word returns a single word of lorem ipsum
 func (li *LoremIpsum) Word() string {
+	defer li.shuffle()
 	return li.words[li.rng.Intn(len(li.words))]
 }
 
 // WordList returns list of words of lorem ipsum
 func (li *LoremIpsum) WordList(count int) []string {
+	defer li.shuffle()
 	return li.words[:count]
 }
 
@@ -52,6 +54,7 @@ func (li *LoremIpsum) Words(count int) string {
 
 // Sentence returns full sentence of lorem ipsum
 func (li *LoremIpsum) Sentence() string {
+	defer li.shuffle()
 	for {
 		l := int(li.gauss(24.46, 5.08))
 		if l > 0 {
@@ -66,7 +69,6 @@ func (li *LoremIpsum) SentenceList(count int) []string {
 	sentences := make([]string, count)
 	for idx := range sentences {
 		sentences[idx] = li.Sentence()
-		li.shuffle()
 	}
 	return sentences
 }
